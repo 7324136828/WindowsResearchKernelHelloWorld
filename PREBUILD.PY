@@ -1,16 +1,23 @@
-import os
+"""Create the output directories required by the WRK and ProjectOZ makefiles."""
 
-cwd = os.getcwd()
+from pathlib import Path
 
-for root, dirs, files in os.walk(cwd):
-    for dir in dirs:
-        if dir.lower() == "build":
-            os.makedirs(os.path.join(root, dir, "OBJI386"), exist_ok = True)
-            os.makedirs(os.path.join(root, dir, "OBJAMD64"), exist_ok = True)
 
-os.makedirs(os.path.join(cwd, "WRK-V1.2", "BASE", "NTOS", "BUILD", "EXE"), exist_ok = True)
+repo_root = Path(__file__).resolve().parent
+ntos_root = repo_root / "WRK-V1.2" / "BASE" / "NTOS"
 
-os.makedirs(os.path.join(cwd, "ProjectOZ", "BasicOZ", "OBJI386"), exist_ok = True)
-os.makedirs(os.path.join(cwd, "ProjectOZ", "SPACE", "OBJI386"), exist_ok = True)
-os.makedirs(os.path.join(cwd, "ProjectOZ", "runx86"), exist_ok = True)
-os.makedirs(os.path.join(cwd, "ProjectOZ", "files", "i386"), exist_ok = True)
+# Only source BUILD directories need object directories. Searching the entire
+# checkout also enters generated build trees and creates unrelated outputs.
+for build_directory in ntos_root.rglob("BUILD"):
+    if build_directory.is_dir() and (build_directory / "MAKEFILE").is_file():
+        for architecture in ("OBJI386", "OBJAMD64"):
+            (build_directory / architecture).mkdir(exist_ok=True)
+
+for relative_directory in (
+    "WRK-V1.2/BASE/NTOS/BUILD/EXE",
+    "ProjectOZ/BasicOZ/OBJI386",
+    "ProjectOZ/SPACE/OBJI386",
+    "ProjectOZ/runx86",
+    "ProjectOZ/files/i386",
+):
+    (repo_root / relative_directory).mkdir(parents=True, exist_ok=True)

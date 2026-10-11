@@ -1,0 +1,50 @@
+WRK x86 payload - guest installation
+=====================================
+
+This is a DATA CD. It is not bootable and contains no installer.
+Use it inside a Windows Server 2003 SP1 (x86) guest that is already
+installed in this virtual machine, logged on as Administrator.
+
+Prerequisite: 32-bit Windows Server 2003 SP1. Windows 11 and Windows XP
+x86 are NOT supported. SP2 compatibility is not promised. The WRK kernel
+is licensed for authorized academic/noncommercial use only - read
+LICENSE.TXT on this disc.
+
+Files on this disc
+------------------
+  WRKX86.EXE    WRK 1.2 kernel, built from unmodified WRK-V1.2 sources
+  WRKX86.PDB    matching debug symbols
+  HALMACPI.DLL  ACPI APIC MP HAL (from WS03SP1HALS) - required because
+                this VM is configured with ACPI and I/O APIC enabled
+  LICENSE.TXT   Windows Research Kernel license terms
+  INSTALL.TXT   this file
+
+Install steps (inside the guest, as Administrator)
+--------------------------------------------------
+1. Copy WRKX86.EXE and HALMACPI.DLL from this CD to
+   %SystemRoot%\System32. Do NOT overwrite or rename the stock
+   ntoskrnl.exe or hal.dll - the stock kernel stays as fallback.
+
+2. Back up C:\boot.ini before editing it. It is hidden/system/read-only:
+       attrib -s -h -r C:\boot.ini
+   Keep a copy of the original somewhere safe.
+
+3. In [operating systems], DUPLICATE the existing ARC-path line. Copy the
+   real stock line verbatim - never guess or hardcode a partition number.
+   Leave the original line and the default= entry unchanged.
+
+4. Edit the NEW line only:
+   - change the label, e.g. "Windows Server 2003, WRK"
+   - remove /PAE and any conflicting /noexecute flag
+   - append:
+       /fastdetect /noexecute=alwaysoff /kernel=wrkx86.exe /hal=halmacpi.dll
+
+5. Set timeout=30 (or higher) in the [boot loader] section so the boot
+   menu gives you time to choose.
+
+6. Restore the file attributes:
+       attrib +s +h +r C:\boot.ini
+
+7. Eject the install/data CDs, reboot, and pick the new WRK entry.
+   If the WRK kernel fails to boot, the untouched stock entry still
+   works - select it and review the boot.ini changes.

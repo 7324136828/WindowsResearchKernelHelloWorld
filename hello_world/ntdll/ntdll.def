@@ -1,0 +1,19 @@
+LIBRARY ntdll
+EXPORTS
+    NtContinue=_NtContinue@8
+    NtDelayExecution=_NtDelayExecution@8
+    NtDisplayString=_NtDisplayString@4
+    NtProtectVirtualMemory=_NtProtectVirtualMemory@20
+    NtRaiseException=_NtRaiseException@12
+    NtTerminateProcess=_NtTerminateProcess@8
+    LdrInitializeThunk=_LdrInitializeThunk@12
+    KiUserExceptionDispatcher
+    KiUserApcDispatcher
+    KiUserCallbackDispatcher
+    KiRaiseUserExceptionDispatcher
+    ExpInterlockedPopEntrySListEnd
+    ExpInterlockedPopEntrySListFault
+    ExpInterlockedPopEntrySListResume
+    KiFastSystemCall
+    KiFastSystemCallRet
+    KiIntSystemCall
