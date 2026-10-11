@@ -1,0 +1,41 @@
+; Registry seed for an isolated WRK native Hello World boot experiment.
+; This is a generated test environment, not an installed Windows registry.
+; The default has no storage drivers: it tests loader/core integration only.
+; Use New-WrkHelloHives.ps1 -BootDriver ramdisk,cdfs only with matching drivers.
+[Version]
+Signature = "$Windows NT$"
+
+[AddReg]
+HKLM,"SYSTEM\Select","Current",0x00010001,1
+HKLM,"SYSTEM\Select","Default",0x00010001,1
+HKLM,"SYSTEM\Select","Failed",0x00010001,0
+HKLM,"SYSTEM\Select","LastKnownGood",0x00010001,1
+HKLM,"SYSTEM\CurrentControlSet\Services",,0x00000010
+HKLM,"SYSTEM\CurrentControlSet\Control\GroupOrderList",,0x00000010
+HKLM,"SYSTEM\CurrentControlSet\Control\ServiceGroupOrder","List",0x00010000,"Boot Bus Extender","System Bus Extender","SCSI Miniport","SCSI Class","Boot File System","File System","Base"
+HKLM,"SYSTEM\CurrentControlSet\Control\NLS\CodePage","ACP",0x00000000,"1252"
+HKLM,"SYSTEM\CurrentControlSet\Control\NLS\CodePage","OEMCP",0x00000000,"437"
+HKLM,"SYSTEM\CurrentControlSet\Control\NLS\CodePage","1252",0x00000000,"c_1252.nls"
+HKLM,"SYSTEM\CurrentControlSet\Control\NLS\CodePage","437",0x00000000,"c_437.nls"
+HKLM,"SYSTEM\CurrentControlSet\Control\NLS\Language","Default",0x00000000,"0409"
+HKLM,"SYSTEM\CurrentControlSet\Control\NLS\Language","InstallLanguage",0x00000000,"0409"
+HKLM,"SYSTEM\CurrentControlSet\Control\NLS\Language","0409",0x00000000,"l_intl.nls"
+HKLM,"SYSTEM\CurrentControlSet\Control\ProductOptions","ProductType",0x00000000,"ServerNT"
+HKLM,"SYSTEM\CurrentControlSet\Control\ProductOptions","ProductSuite",0x00010000,""
+HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager","BootExecute",0x00010000,""
+HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\SubSystems","Required",0x00010000,""
+HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management","PagingFiles",0x00010000,""
+HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management","ClearPageFileAtShutdown",0x00010001,0
+HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","SystemRoot",0x00000000,"X:\wrk"
+HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","SystemDrive",0x00000000,"X:"
+HKLM,"SYSTEM\CurrentControlSet\Control\Session Manager\Environment","Path",0x00020000,"%SystemRoot%\System32"
+HKLM,"SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName","ComputerName",0x00000000,"WRKHELLO"
+HKLM,"SYSTEM\CurrentControlSet\Control\PriorityControl","Win32PrioritySeparation",0x00010001,2
+HKLM,"SYSTEM\Setup","SetupType",0x00010001,0
+HKLM,"SYSTEM\Setup","SystemSetupInProgress",0x00010001,0
+HKLM,"SYSTEM\Setup","CmdLine",0x00000000,""
+HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","SystemRoot",0x00000000,"X:\wrk"
+HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","CurrentVersion",0x00000000,"5.2"
+HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","CurrentBuildNumber",0x00000000,"3800"
+HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","ProductName",0x00000000,"WRK native Hello World experiment"
+HKU,".DEFAULT\Control Panel\International","Locale",0x00000000,"00000409"

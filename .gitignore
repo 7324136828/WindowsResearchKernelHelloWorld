@@ -1,12 +1,24 @@
+# Build output from the upstream WRK and ProjectOZ makefiles.
 OBJI386/
 OBJAMD64/
+/WRK-V1.2/BASE/NTOS/BUILD/EXE/
 ProjectOZ/runx86/
 ProjectOZ/files/
 
-wrkx86.*
-wrkamd64.*
+# Local prerequisites are inputs, separate from disposable build artifacts.
+/.tools/
+/artifacts/
 
+# Python and editor caches.
+__pycache__/
+*.py[cod]
+/.vs/
+
+# Logs and editor backup files.
 *.cache
 *.log
+*.bak
+*.orig
+*~
 
 UpgradeLog.htm

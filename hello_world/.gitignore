@@ -1,0 +1,7 @@
+/ntdll/build/
+/smss/build/
+/ntdll/ntdll.dll
+/smss/smss.exe
+/build.log
+/verification.json
+__pycache__/
